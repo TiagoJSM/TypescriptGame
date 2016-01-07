@@ -9,7 +9,7 @@ module.exports = function (grunt, init, done) {
                 }
             }
         },
-        
+
         clean: ["js/"],
 
         uglify: {
@@ -22,7 +22,6 @@ module.exports = function (grunt, init, done) {
                 }
             }
         },
-        
 
         typescript: {
             base: {
@@ -30,11 +29,13 @@ module.exports = function (grunt, init, done) {
                 dest: 'js',
                 options: {
                     module: 'commonjs',
-                    target: 'es5'
+                    target: 'es5'/*,
+                    declaration: true,
+                    noLib: false*/
                 }
             }
         },
-        
+
         watch: {
             clean: {
                 files: [],
@@ -48,9 +49,9 @@ module.exports = function (grunt, init, done) {
                 files: ['css/*.css'],
                 tasks: ['cssmin']
             },
-            
+
             uglify: {
-                files:['js/*.js', '!js/build/**/*.js'],
+                files: ['js/*.js', '!js/build/**/*.js'],
                 tasks: ['uglify']
             }
         },
@@ -61,5 +62,5 @@ module.exports = function (grunt, init, done) {
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['typescript', 'cssmin', 'uglify', 'watch']);
+    grunt.registerTask('default', ['clean', 'typescript', 'cssmin', 'uglify', 'watch']);
 };

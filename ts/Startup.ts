@@ -11,6 +11,7 @@ $(function (){
     
     var timer = setInterval(function(){
         stopwatch.MarkTime();
-        engine.update(stopwatch.GetMillis());
+        engine.Update(stopwatch.GetMillis());
+        //$('p').text(stopwatch.GetMillis());
     }, 60); 
 })
