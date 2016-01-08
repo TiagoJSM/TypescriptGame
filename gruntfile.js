@@ -14,11 +14,13 @@ module.exports = function (grunt, init, done) {
 
         uglify: {
             options: {
-                manage: false
+                manage: false,
+                compress: false,
+                beautify: true
             },
             my_target: {
                 files: {
-                    'js/build/main.min.js': ['js/*.js', '!js/build/**/*.js']
+                    'js/build/main.min.js': ['js/**/*.js', '!js/build/**/*.js']
                 }
             }
         },

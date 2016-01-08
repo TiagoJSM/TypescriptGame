@@ -12,18 +12,21 @@ module GameFramework {
         componentFactory: IComponentFactory;
          
         constructor() {
+            this.components = new Array<BaseComponent>();
             this.orderInLayer = 0;
             this.transform = new Data.Transform();
         }
         
         Update(elapsedMillis: number) {
-            for(var component in this.components){
-                component.Update(elapsedMillis);
+            for(var idx = 0; idx < this.components.length; idx++){
+                this.components[idx].Update(elapsedMillis);
             }
         }
         
         AddComponent<TComponent extends BaseComponent>(ctor: ParameterlessConstructor<TComponent>) {
-            return this.componentFactory.GetComponent<TComponent>(ctor);
+            var component =  this.componentFactory.BuildComponent<TComponent>(ctor);
+            this.components.push(component);
+            return component;
         }
         
         GetComponents(): Array<BaseComponent> {

@@ -1,8 +1,11 @@
+///<reference path="../typings/tsd.d.ts" />
 ///<reference path="./GameFramework.Data.ts" />
 
 module GameFramework {
     export interface IComponentFactory {
-        GetComponent<TComponent extends BaseComponent>(ctor: ParameterlessConstructor<TComponent>): TComponent;
+        BuildComponent<TComponent extends BaseComponent>(ctor: ParameterlessConstructor<TComponent>): TComponent;
+        BuildRenderable(image: HTMLImageElement): IRenderable;
+        AddGameEntity(name: string): GameEntity;
     }
 
     export interface ParameterlessConstructor<T> {
@@ -14,18 +17,17 @@ module GameFramework {
     }
     
     export interface IRenderable extends IUpdatable{
-        orderInLayer: number;
         transform: Data.Transform;
+        Render();
     }
     
     export interface IRenderer {
-        Render(renderable: IRenderable);
+        RenderImage(image: HTMLImageElement, transform: Data.Transform);
     }
     
-    export interface IScreenManager extends IRenderer{
+    export interface IScreenManager extends IRenderer {
         Clear(color: Data.Color);
         SetTransformToOrigin();
-        SaveTransform();
-        RestoreTransform();
     }
+
 }

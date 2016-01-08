@@ -25,7 +25,9 @@ module GameFramework.Data {
         rotate: number;
         
         constructor() {
+            this.position = Vector2.Zero();
             this.scale = Vector2.One();
+            this.rotate = 0;
         }
     }
     

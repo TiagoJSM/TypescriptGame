@@ -11,9 +11,8 @@ module GameFramework {
         abstract Update(elapsedMillis: number);
     }
     
-    export class RenderableComponent extends BaseComponent implements IRenderable{
-        orderInLayer: number;
-        transform: Data.Transform;
+    export class RenderableComponent extends BaseComponent {
+        renderable: IRenderable;
         Update(elapsedMillis: number){ }
     }
 }
