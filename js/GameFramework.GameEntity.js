@@ -18,13 +18,13 @@ var GameFramework;
         GameEntity.prototype.GetComponents = function () {
             return this.components.slice();
         };
-        GameEntity.prototype.GetComponentsOfType = function (componentType) {
+        GameEntity.prototype.GetComponentsOfType = function (ctor) {
             return this.components.filter(function (component, index, array) {
-                return typeof (component) === componentType;
+                return component instanceof ctor;
             });
         };
-        GameEntity.prototype.GetComponent = function (componentType) {
-            var components = this.GetComponentsOfType(componentType);
+        GameEntity.prototype.GetComponent = function (ctor) {
+            var components = this.GetComponentsOfType(ctor);
             if (components.length == 0) {
                 return null;
             }

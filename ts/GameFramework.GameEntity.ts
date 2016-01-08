@@ -30,15 +30,15 @@ module GameFramework {
             return this.components.slice();
         }
         
-        GetComponentsOfType<TComponent extends BaseComponent>(componentType: string): Array<TComponent> {
+        GetComponentsOfType<TComponent extends BaseComponent>(ctor:{new ():TComponent}): Array<TComponent> {
             return <TComponent[]> this.components.filter(
                 function(component: TComponent, index: number, array: TComponent[]){
-                    return typeof(component) === componentType;
+                    return component instanceof ctor;
                 });
         }
         
-        GetComponent<TComponent extends BaseComponent>(componentType: string): TComponent {
-            var components = this.GetComponentsOfType<TComponent>(componentType);
+        GetComponent<TComponent extends BaseComponent>(ctor:{new ():TComponent}): TComponent {
+            var components = this.GetComponentsOfType<TComponent>(ctor);
             if(components.length == 0){
                 return null;
             }

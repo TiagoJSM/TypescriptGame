@@ -10,9 +10,12 @@ var GameFramework;
             this.document = document;
         }
         Engine.prototype.Update = function (elapsedMillis) {
+            for (var entity in this.entities) {
+                entity.Update(elapsedMillis);
+            }
         };
         Engine.prototype.Render = function () {
-            var orderedEntitiesy = this.entities.sort(this.EntitiesOrderFunc);
+            var orderedEntities = this.entities.sort(this.EntitiesOrderFunc);
         };
         Engine.prototype.GetComponent = function (ctor) {
             var component = new ctor();
@@ -26,6 +29,9 @@ var GameFramework;
         };
         Engine.prototype.EntitiesOrderFunc = function (entity) {
             return entity.orderInLayer;
+        };
+        Engine.prototype.RenderComponentsInEntity = function (entity) {
+            var renderables = entity.GetComponentsOfType(GameFramework.RenderableComponent);
         };
         return Engine;
     })();

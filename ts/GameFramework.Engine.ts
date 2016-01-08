@@ -16,11 +16,13 @@ module GameFramework {
         }
         
         Update(elapsedMillis: number) {
-            
+            for(var entity in this.entities){
+                entity.Update(elapsedMillis);
+            }
         }
         
         Render() {
-            var orderedEntitiesy = this.entities.sort(this.EntitiesOrderFunc);
+            var orderedEntities = this.entities.sort(this.EntitiesOrderFunc);
         }
         
         GetComponent<TComponent extends BaseComponent>(ctor: ParameterlessConstructor<TComponent>): TComponent {
@@ -38,6 +40,10 @@ module GameFramework {
         
         private EntitiesOrderFunc(entity: GameEntity) : number {
             return entity.orderInLayer;
+        }
+        
+        private RenderComponentsInEntity(entity: GameEntity) {
+            var renderables = entity.GetComponentsOfType<RenderableComponent>(RenderableComponent);
         }
         
     }
