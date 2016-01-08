@@ -48,6 +48,14 @@ module GameFramework {
             return gameEntity;
         }
         
+        RemoveGameEntity(entity: GameEntity){
+            var index = this.entities.indexOf(entity);
+            if(index == -1){
+                return;
+            }
+            this.entities.splice(index, 1)
+        }
+        
         private EntitiesOrderFunc(entity: GameEntity) : number {
             return entity.orderInLayer;
         }
