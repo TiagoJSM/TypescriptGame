@@ -12,6 +12,7 @@ $(function (){
     var timer = setInterval(function(){
         stopwatch.MarkTime();
         engine.Update(stopwatch.GetMillis());
-        //$('p').text(stopwatch.GetMillis());
+        engine.Render();
+        $('p').text(stopwatch.GetMillis());
     }, 60); 
 })

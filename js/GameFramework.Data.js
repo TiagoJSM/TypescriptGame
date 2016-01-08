@@ -24,5 +24,15 @@ var GameFramework;
             return Transform;
         })();
         Data.Transform = Transform;
+        var Color = (function () {
+            function Color() {
+                this.r = 0;
+                this.g = 0;
+                this.b = 0;
+                this.a = 0;
+            }
+            return Color;
+        })();
+        Data.Color = Color;
     })(Data = GameFramework.Data || (GameFramework.Data = {}));
 })(GameFramework || (GameFramework = {}));

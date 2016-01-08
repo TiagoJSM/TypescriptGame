@@ -22,10 +22,24 @@ module GameFramework.Data {
     export class Transform {
         position: Vector2;
         scale: Vector2;
-        rotate: Vector2;
+        rotate: number;
         
         constructor() {
             this.scale = Vector2.One();
+        }
+    }
+    
+    export class Color {
+        r: number;
+        g: number;
+        b: number;
+        a: number;
+        
+        constructor() {
+            this.r = 0;
+            this.g = 0;
+            this.b = 0;
+            this.a = 0;
         }
     }
 }
